@@ -24,39 +24,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
+
+
 let saveimg = document.querySelector(".saveimg")
 let inseertimages = document.querySelector(".inseertimages")
 let storeimgurl ="";
 
 
-// saveimg.addEventListener("click",function(){
-
-  // const input = document.getElementById('fileInput');
-  
-  // if (input.files && input.files[0]) {
-  //     const reader = new FileReader();
-
-  //     reader.onload = function (readerEvent) {
-  //         const imageUrl = readerEvent.target.result;
-
-  //         // Save imageUrl to local storage
-  //         localStorage.setItem('userImage', imageUrl);
-
-
-  //         // You can also use imageUrl as needed (e.g., display in UI)
-  //         console.log('Image URL:', imageUrl);
-  //     };
-
-  //     reader.readAsDataURL(input.files[0]);
-  // }
-// location.reload()
-// })
-// storeimgurl = localStorage.getItem('userImage');
-
-// inseertimages.innerHTML = `<img src="${storeimgurl}" alt="Image Preview">`;
-
 
 // ============signup================
+
 let submit = document.querySelector(".form");
 let user;
 if(submit){
@@ -113,63 +90,64 @@ window.location.href = "login.html"
 // ========signin=================
 
 
-let insubmit = document.querySelector(".formlogin");
-let storedlastuserdata;
-if(insubmit){
-insubmit.addEventListener("submit", function (event) {
-  event.preventDefault();
-  console.log("signin");
-  let email = document.querySelector("#emaillogin").value;
-  let password = document.querySelector("#passwordlogin").value;
+// let insubmit = document.querySelector(".formlogin");
+
+// if(insubmit){
+// insubmit.addEventListener("submit", function (event) {
+//   event.preventDefault();
+//   console.log("signin");
+//   let email = document.querySelector("#emaillogin").value;
+//   let password = document.querySelector("#passwordlogin").value;
 
 
-  console.log(email);
-  console.log(password);
+//   console.log(email);
+//   console.log(password);
 
 
-  signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    const userr = userCredential.user;
-    console.log(userr);
+//   signInWithEmailAndPassword(auth, email, password)
+//   .then((userCredential) => {
+//     const userr = userCredential.user;
+//     console.log(userr);
 
 
-    onAuthStateChanged(auth, (userr) => {
-        if (userr) {
+//     onAuthStateChanged(auth, (userr) => {
+//         if (userr) {
 
-          const uid = userr.email;
-          console.log(`las user id`,uid);
-          let  lastuseremail = uid;
+//           const uid = userr.email;
+//           console.log(`las user id`,uid);
+//           let  lastuseremail = uid;
 
-localStorage.setItem('lastuseremail',lastuseremail );
-          console.log(userr);
-          window.location.href = "home.html"
+// localStorage.setItem('lastuseremail',lastuseremail );
+//           console.log(userr);
+//           window.location.href = "home.html"
 
-        } 
+//         } 
        
-      });
+//       });
 
-  })
+//   })
 
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode,errorMessage);
-  });
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     alert(errorCode,errorMessage);
+//   });
   
-});
+// });
 
-}
+// }
 
 
 
 // ===============home=================
-
+let storedlastuserdata;
 let insertdata =""
 let storedUserString;
 let storedUserObject;
 let lastuser = document.querySelector("#lastuseremail")
 storedlastuserdata = localStorage.getItem('lastuseremail');
 let blogsalldata = document.querySelector(".blogsalldata")
+let check = false;
 // console.log('Stored User:', storedlastuserdata);
 
 let putingdata = ""
@@ -179,19 +157,16 @@ if(storedlastuserdata){
   lastuser.innerHTML = `Welcome ${storedlastuserdata}`;
 }
 
-else{
-  window.location.href = "login.html"
-}
-
+// else{
+//   window.location.href = "login.html"
+// }
 
 let logout = document.querySelector("#logout")
+
 logout.addEventListener("click",function(){
-
 localStorage.removeItem('lastuseremail');
-
 window.location.href = "login.html"
-
-
+alert("you must be signin")
 })
 
 
@@ -388,7 +363,7 @@ let selectedlength = 100;
       await updateDoc(frankDocRef, {
      
         "times": times,
-        "age": title,
+        "title": title,
         "description": description,
         "img":img
         
@@ -442,7 +417,6 @@ window.onload = async function() {
    <div class="descriptiondata">${firstPart} <span class="readmoredata">${secondPart}</span> <span class="expanddata">Read more data</span> </div>
    <div class="buttons"><button class="delbtn">Delete</button><button class="editbtn">Edit</button></div>
    </div>`
-    // console.log(doc.data().title,doc.data().description,doc.data().times,doc.data().name);  
   });
 
   blogsalldata.innerHTML = insertdata

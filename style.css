@@ -16,9 +16,9 @@ body{
     width: 100%;
 }
 .box{
-    width: 30%;
-    height: 70%;
-    border: 1px solid gray;
+    width: 95%;
+    height: 90%;
+    border: 1px solid rgb(255, 254, 254);
     border-radius: 12px;
 }
 .form{
@@ -64,10 +64,13 @@ width: 100%;
     width: 100%;
 }
 .boxlogin{
-    width: 30%;
-    height: 70%;
-    border: 1px solid gray;
+    width: 90%;
+    height: 90%;
+    border: 1px solid rgb(255, 255, 255);
     border-radius: 12px;
+}
+.boxlogin button{
+    margin: 12px 0px;
 }
 .formlogin{
     height: 100%;
@@ -306,6 +309,14 @@ justify-content: space-around;
     text-align: center;
 }
 
+.gotosignup{
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid black;
+    background-color: #ED5684;
+    width: 80%;
+}
+
 
 
 @media(min-width:375px){
@@ -315,6 +326,7 @@ justify-content: space-around;
     .blogsinnercartdata{
         width: 90%;
     }
+
 }
 
 @media(min-width:768px){
@@ -392,6 +404,16 @@ height: 82%;
     font-size: 19px;
 }
 .right img{
+    height: 80%;
+}
+.boxlogin{
+    width: 30%;
+    height: 70%;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 12px;
+}
+.box{
+    width: 30%;
     height: 80%;
 }
 }
